@@ -2,7 +2,9 @@
 
 **RHEL上のApache・Tomcat・PostgreSQLをAWSに構築し、再起動後の動作・監視・停止まで検証した学習ポートフォリオです。**
 
-構築日: **2026-10-26** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1実施分**
+構築日: **2026-10-26** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1 / Day 2の実施分（Aurora移行は保留）**
+
+> **Day 2コンソール実施済み:** [バックアップ復元・ALB/NLB・障害復旧の記録](docs/day2-console.md) / [検証出力](evidence/day2-verification.txt)
 
 > **Terraform対応済み:** [IaCコードと操作手順](terraform/README.md) / [取り込み・適用の実施記録](docs/terraform-result.md)
 
@@ -59,7 +61,7 @@ Day 1: Apache -> Tomcat -> PostgreSQL OK
 
 本成果物は学習環境の構築・検証記録です。実務の本番導入実績、可用性保証、負荷試験、復旧目標の達成を示すものではありません。AI支援で構築・記録を行い、AWS APIとサーバーの実行結果をもとに検証しています。
 
-Day 2以降のAurora、ロードバランサー、ECS、CI/CD、非同期連携は**未実施**です。実績と今後の計画を混同しないよう[ロードマップ](docs/roadmap.md)に分けています。
+Day 2ではバックアップからのDB・EFS復元、内部ALB/NLB、5xx検知と障害復旧、追加リソースの削除まで実施しました。Aurora移行はFreeプラン維持の方針で保留し、ECS・CI/CD・非同期連携は未実施です。[実施範囲](docs/day2-console.md)と[ロードマップ](docs/roadmap.md)に分けています。
 
 公開版ではアカウントID・実リソースID・IP・ARNなどを置換しています。秘密情報、認証情報、未加工の状態ファイルは含めていません。原本は公開用フォルダーとは別に保管しています。
 
