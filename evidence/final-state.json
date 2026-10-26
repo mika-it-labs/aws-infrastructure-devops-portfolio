@@ -1,0 +1,11 @@
+{
+  "SnapshotProgress": "100%",
+  "CheckedAtJST": "2026-10-26T14:25:46.5313205+09:00",
+  "DataVolume": "<RESOURCE_ID>",
+  "InstanceState": "stopped",
+  "InstanceId": "<RESOURCE_ID>",
+  "SnapshotState": "completed",
+  "SnapshotId": "<RESOURCE_ID>",
+  "CpuCredits": "standard"
+}
+

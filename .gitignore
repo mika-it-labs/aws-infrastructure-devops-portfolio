@@ -1,0 +1,22 @@
+# Local execution state and AWS request/output files
+.local/
+work/
+resources.json
+request.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.aws/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.log
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,0 +1,27 @@
+[
+  {
+    "RetentionDays": 7,
+    "Streams": 1,
+    "Name": "/portfolio/day1/bootstrap",
+    "ObservedEventsAtLeast": 1
+  },
+  {
+    "RetentionDays": 7,
+    "Streams": 1,
+    "Name": "/portfolio/day1/httpd-access",
+    "ObservedEventsAtLeast": 1
+  },
+  {
+    "RetentionDays": 7,
+    "Streams": 1,
+    "Name": "/portfolio/day1/httpd-error",
+    "ObservedEventsAtLeast": 1
+  },
+  {
+    "RetentionDays": 7,
+    "Streams": 1,
+    "Name": "/portfolio/day1/tomcat",
+    "ObservedEventsAtLeast": 1
+  }
+]
+

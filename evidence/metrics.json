@@ -1,0 +1,51 @@
+{
+  "Metrics": [
+    {
+      "Namespace": "Portfolio/Day1",
+      "MetricName": "mem_used_percent",
+      "Dimensions": [
+        {
+          "Name": "InstanceId",
+          "Value": "<RESOURCE_ID>"
+        }
+      ]
+    },
+    {
+      "Namespace": "Portfolio/Day1",
+      "MetricName": "disk_used_percent",
+      "Dimensions": [
+        {
+          "Name": "path",
+          "Value": "/var/lib/pgsql"
+        },
+        {
+          "Name": "InstanceId",
+          "Value": "<RESOURCE_ID>"
+        },
+        {
+          "Name": "fstype",
+          "Value": "xfs"
+        }
+      ]
+    },
+    {
+      "Namespace": "Portfolio/Day1",
+      "MetricName": "disk_used_percent",
+      "Dimensions": [
+        {
+          "Name": "path",
+          "Value": "/"
+        },
+        {
+          "Name": "InstanceId",
+          "Value": "<RESOURCE_ID>"
+        },
+        {
+          "Name": "fstype",
+          "Value": "xfs"
+        }
+      ]
+    }
+  ]
+}
+

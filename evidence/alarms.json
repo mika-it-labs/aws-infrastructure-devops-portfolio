@@ -1,0 +1,162 @@
+{
+  "MetricAlarms": [
+    {
+      "AlarmName": "portfolio-day1-cpu-high",
+      "AlarmArn": "arn:aws:cloudwatch:ap-northeast-1:<AWS_ACCOUNT_ID>:alarm:portfolio-day1-cpu-high",
+      "AlarmConfigurationUpdatedTimestamp": "2026-10-26T14:08:43.623+09:00",
+      "ActionsEnabled": true,
+      "OKActions": [],
+      "AlarmActions": [],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: 2 datapoints [19.999932984159763 (26/10/26 05:05:00), 0.0047856788575732 (26/10/26 05:00:00)] were not greater than the threshold (80.0).",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-10-26T05:10:03.254+0000\",\"startDate\":\"2026-10-26T05:00:00.000+0000\",\"statistic\":\"Average\",\"period\":300,\"recentDatapoints\":[0.0047856788575732,19.999932984159763],\"threshold\":80.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-10-26T05:05:00.000+0000\",\"sampleCount\":5.0,\"value\":19.999932984159763}]}",
+      "StateUpdatedTimestamp": "2026-10-26T14:10:03.256+09:00",
+      "MetricName": "CPUUtilization",
+      "Namespace": "AWS/EC2",
+      "Statistic": "Average",
+      "Dimensions": [
+        {
+          "Name": "InstanceId",
+          "Value": "<RESOURCE_ID>"
+        }
+      ],
+      "Period": 300,
+      "EvaluationPeriods": 2,
+      "Threshold": 80.0,
+      "ComparisonOperator": "GreaterThanThreshold",
+      "TreatMissingData": "missing",
+      "StateTransitionedTimestamp": "2026-10-26T14:10:03.256+09:00"
+    },
+    {
+      "AlarmName": "portfolio-day1-disk-pgsql-high",
+      "AlarmArn": "arn:aws:cloudwatch:ap-northeast-1:<AWS_ACCOUNT_ID>:alarm:portfolio-day1-disk-pgsql-high",
+      "AlarmConfigurationUpdatedTimestamp": "2026-10-26T14:23:00.261+09:00",
+      "ActionsEnabled": true,
+      "OKActions": [],
+      "AlarmActions": [],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: 1 datapoint [1.7287847563976377 (26/10/26 05:19:00)] was not greater than the threshold (80.0).",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-10-26T05:23:32.498+0000\",\"startDate\":\"2026-10-26T05:19:00.000+0000\",\"statistic\":\"Average\",\"period\":60,\"recentDatapoints\":[1.7287847563976377],\"threshold\":80.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-10-26T05:19:00.000+0000\",\"sampleCount\":1.0,\"value\":1.7287847563976377}]}",
+      "StateUpdatedTimestamp": "2026-10-26T14:23:32.499+09:00",
+      "MetricName": "disk_used_percent",
+      "Namespace": "Portfolio/Day1",
+      "Statistic": "Average",
+      "Dimensions": [
+        {
+          "Name": "path",
+          "Value": "/var/lib/pgsql"
+        },
+        {
+          "Name": "InstanceId",
+          "Value": "<RESOURCE_ID>"
+        },
+        {
+          "Name": "fstype",
+          "Value": "xfs"
+        }
+      ],
+      "Period": 60,
+      "EvaluationPeriods": 2,
+      "Threshold": 80.0,
+      "ComparisonOperator": "GreaterThanThreshold",
+      "TreatMissingData": "missing",
+      "StateTransitionedTimestamp": "2026-10-26T14:23:32.499+09:00"
+    },
+    {
+      "AlarmName": "portfolio-day1-disk-root-high",
+      "AlarmArn": "arn:aws:cloudwatch:ap-northeast-1:<AWS_ACCOUNT_ID>:alarm:portfolio-day1-disk-root-high",
+      "AlarmConfigurationUpdatedTimestamp": "2026-10-26T14:23:01.707+09:00",
+      "ActionsEnabled": true,
+      "OKActions": [],
+      "AlarmActions": [],
+      "InsufficientDataActions": [],
+      "StateValue": "INSUFFICIENT_DATA",
+      "StateReason": "Unchecked: Initial alarm creation",
+      "StateUpdatedTimestamp": "2026-10-26T14:23:01.707+09:00",
+      "MetricName": "disk_used_percent",
+      "Namespace": "Portfolio/Day1",
+      "Statistic": "Average",
+      "Dimensions": [
+        {
+          "Name": "path",
+          "Value": "/"
+        },
+        {
+          "Name": "InstanceId",
+          "Value": "<RESOURCE_ID>"
+        },
+        {
+          "Name": "fstype",
+          "Value": "xfs"
+        }
+      ],
+      "Period": 60,
+      "EvaluationPeriods": 2,
+      "Threshold": 80.0,
+      "ComparisonOperator": "GreaterThanThreshold",
+      "TreatMissingData": "missing",
+      "StateTransitionedTimestamp": "2026-10-26T14:23:01.707+09:00"
+    },
+    {
+      "AlarmName": "portfolio-day1-memory-high",
+      "AlarmArn": "arn:aws:cloudwatch:ap-northeast-1:<AWS_ACCOUNT_ID>:alarm:portfolio-day1-memory-high",
+      "AlarmConfigurationUpdatedTimestamp": "2026-10-26T14:08:46.059+09:00",
+      "ActionsEnabled": true,
+      "OKActions": [],
+      "AlarmActions": [],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: 1 datapoint [34.673191590233586 (26/10/26 05:19:00)] was not greater than the threshold (85.0).",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-10-26T05:21:22.212+0000\",\"startDate\":\"2026-10-26T05:19:00.000+0000\",\"statistic\":\"Average\",\"period\":60,\"recentDatapoints\":[34.673191590233586],\"threshold\":85.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-10-26T05:19:00.000+0000\",\"sampleCount\":1.0,\"value\":34.673191590233586}]}",
+      "StateUpdatedTimestamp": "2026-10-26T14:21:22.213+09:00",
+      "MetricName": "mem_used_percent",
+      "Namespace": "Portfolio/Day1",
+      "Statistic": "Average",
+      "Dimensions": [
+        {
+          "Name": "InstanceId",
+          "Value": "<RESOURCE_ID>"
+        }
+      ],
+      "Period": 60,
+      "EvaluationPeriods": 2,
+      "Threshold": 85.0,
+      "ComparisonOperator": "GreaterThanThreshold",
+      "TreatMissingData": "missing",
+      "StateTransitionedTimestamp": "2026-10-26T14:21:22.213+09:00"
+    },
+    {
+      "AlarmName": "portfolio-day1-status-failed",
+      "AlarmArn": "arn:aws:cloudwatch:ap-northeast-1:<AWS_ACCOUNT_ID>:alarm:portfolio-day1-status-failed",
+      "AlarmConfigurationUpdatedTimestamp": "2026-10-26T14:08:44.838+09:00",
+      "ActionsEnabled": true,
+      "OKActions": [],
+      "AlarmActions": [],
+      "InsufficientDataActions": [],
+      "StateValue": "OK",
+      "StateReason": "Threshold Crossed: 1 datapoint [0.0 (26/10/26 05:09:00)] was not greater than the threshold (0.0).",
+      "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-10-26T05:10:54.863+0000\",\"startDate\":\"2026-10-26T05:09:00.000+0000\",\"statistic\":\"Average\",\"period\":60,\"recentDatapoints\":[0.0],\"threshold\":0.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-10-26T05:09:00.000+0000\",\"sampleCount\":1.0,\"value\":0.0}]}",
+      "StateUpdatedTimestamp": "2026-10-26T14:10:54.864+09:00",
+      "MetricName": "StatusCheckFailed",
+      "Namespace": "AWS/EC2",
+      "Statistic": "Average",
+      "Dimensions": [
+        {
+          "Name": "InstanceId",
+          "Value": "<RESOURCE_ID>"
+        }
+      ],
+      "Period": 60,
+      "EvaluationPeriods": 2,
+      "Threshold": 0.0,
+      "ComparisonOperator": "GreaterThanThreshold",
+      "TreatMissingData": "missing",
+      "StateTransitionedTimestamp": "2026-10-26T14:10:54.864+09:00"
+    }
+  ],
+  "CompositeAlarms": [],
+  "LogAlarms": []
+}
+

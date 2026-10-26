@@ -1,0 +1,64 @@
+
+=== OS / security ===
+Red Hat Enterprise Linux release 9.8 (Plow)
+5.14.0-687.60.1.el9_8.x86_64
+Timezone=Asia/Tokyo
+Enforcing
+httpd_can_network_connect --> on
+dhcpv6-client http
+
+=== services ===
+httpd: active
+enabled
+tomcat: active
+enabled
+postgresql: active
+enabled
+amazon-ssm-agent: active
+enabled
+amazon-cloudwatch-agent: active
+enabled
+
+=== application HTTP / DB query ===
+
+<!doctype html><html lang="ja"><meta charset="UTF-8"><title>AWS Portfolio Day 1</title><body>
+<h1>AWS Portfolio Day 1</h1>
+<p>Day 1: Apache -> Tomcat -> PostgreSQL OK</p>
+</body></html>
+
+=== database ===
+ id |                 message                  
+----+------------------------------------------
+  1 | Day 1: Apache -> Tomcat -> PostgreSQL OK
+(1 row)
+
+
+=== storage ===
+NAME        SERIAL                SIZE FSTYPE MOUNTPOINTS
+nvme1n1     <DATA_VOLUME_SERIAL>    8G xfs    /var/lib/pgsql
+nvme0n1     <ROOT_VOLUME_SERIAL>   15G        
+--nvme0n1p1                         1M        
+--nvme0n1p2                       200M vfat   /boot/efi
+--nvme0n1p3                         1G xfs    /boot
+--nvme0n1p4                      13.8G xfs    /
+TARGET         SOURCE       FSTYPE OPTIONS
+/var/lib/pgsql /dev/nvme1n1 xfs    rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,sunit=8,swidth=8,noquota
+TARGET      SOURCE        FSTYPE OPTIONS
+/mnt/shared <EFS_MOUNT_IP>:/ nfs4   rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=<EC2_PRIVATE_IP>,local_lock=none,addr=<EFS_MOUNT_IP>
+portfolio Day 1 shared filesystem verified
+
+=== listeners ===
+LISTEN 0      244             127.0.0.1:5432      0.0.0.0:*    users:(("postmaster",pid=809,fd=7))                                                                                        
+LISTEN 0      244                 [::1]:5432         [::]:*    users:(("postmaster",pid=809,fd=6))                                                                                        
+LISTEN 0      100    [::ffff:127.0.0.1]:8080            *:*    users:(("java",pid=796,fd=45))                                                                                             
+LISTEN 0      511                     *:80              *:*    users:(("httpd",pid=5205,fd=4),("httpd",pid=873,fd=4),("httpd",pid=872,fd=4),("httpd",pid=865,fd=4),("httpd",pid=823,fd=4))
+
+=== agent ===
+{
+  "status": "running",
+  "starttime": "2026-10-26T05:22:33+00:00",
+  "configstatus": "configured",
+  "version": "1.300074.0b1920"
+}
+
+
