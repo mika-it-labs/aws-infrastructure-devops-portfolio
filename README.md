@@ -4,7 +4,7 @@
 
 構築日: **2026-10-26** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1実施分**
 
-> 最初に読む資料: [クライアント向けサマリー](docs/client-summary.md) → [設計判断](docs/design.md) → [検証結果](docs/verification.md)
+> 最初に読む資料: [サマリー](docs/summary.md) → [設計判断](docs/design.md) → [検証結果](docs/verification.md)
 
 ![Day 1構成図](assets/architecture.svg)
 
@@ -41,7 +41,7 @@ Day 1: Apache -> Tomcat -> PostgreSQL OK
 
 | 資料 | 内容 |
 |---|---|
-| [クライアント向けサマリー](docs/client-summary.md) | 目的・実施範囲・成果・説明の要点 |
+| [サマリー](docs/summary.md) | 目的・実施範囲・成果・説明の要点 |
 | [設計判断](docs/design.md) | 通信経路、配置、権限、制約と改善余地 |
 | [構築手順](docs/procedure.md) | 実行順序、前提、チェックポイント |
 | [検証結果](docs/verification.md) | 実測と証跡の対応・未検証項目 |
