@@ -39,3 +39,7 @@ EC2は1台で、WebとDBを同居させています。冗長化・HTTPS・負荷
 Day 1環境を43のTerraformリソースアドレスへ取り込み、サーバーやデータを置き換えずに管理へ移行しました。TerraformでのEC2起動、SSMによるLinux構成適用、適用後のアプリ検証、終了時の停止を実施しています。[IaC実施記録](terraform-result.md)と[コード](../terraform/README.md)を参照してください。空環境からの新規構築試験とは区別しています。
 
 
+
+## Day 2の追加実績
+
+Freeプランを維持して、AWS Backupから別EBS・別EFSへ復元し、復元DBのSQLと共有ファイルの一致を確認しました。内部ALB/NLBのHTTP応答、Tomcat停止時の503、CloudWatchのOK→アラーム→OK、S3アクセスログの到着も確認しました。検証用追加リソースを削除し、EC2は停止済みです。Aurora移行は保留です。[Day 2実施記録](day2-console.md)と[検証出力](../evidence/day2-verification.txt)に範囲と根拠をまとめています。
