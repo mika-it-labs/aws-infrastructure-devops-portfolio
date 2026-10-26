@@ -1,0 +1,13 @@
+# Copy to a private path outside the repository, then supply -var-file.
+region             = "ap-northeast-1"
+run_id             = "day1-your-run"
+name_prefix        = "portfolio-day1"
+availability_zones = ["ap-northeast-1a", "ap-northeast-1c"]
+ami_id             = "ami-REPLACE_WITH_VERIFIED_RHEL_9_AMI"
+bucket_names = {
+  static = "replace-with-your-unique-static-bucket"
+  logs   = "replace-with-your-unique-logs-bucket"
+}
+instance_state     = "stopped"
+configure_instance = false
+snapshot_enabled   = false

@@ -14,3 +14,8 @@
 検査は既知の識別子とパターン、およびファイル構造の確認です。包括的なセキュリティ監査や、公開版スクリプトを使ったAWS環境の再構築試験ではありません。
 
 AWSの動作検証は[evidence](../evidence/)と[検証結果](verification.md)、公開コードとの差異は[構築手順](procedure.md)を参照してください。
+
+## Terraform追加時の確認
+
+Terraformのfmt・validate、実際のimport/plan/apply、SSM構成適用後の動作確認を実施しました。公開版は実行時変数・importブロック・state・plan・Providerバイナリを除外しています。依存バージョンはロックファイルに記録し、新規の空環境からの再構築は未実施と明記しています。
+

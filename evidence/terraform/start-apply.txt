@@ -1,0 +1,20 @@
+aws_ec2_instance_state.web: Modifying... [id=<RESOURCE_ID>]
+aws_ec2_instance_state.web: Still modifying... [id=<RESOURCE_ID>, 00m10s elapsed]
+aws_ec2_instance_state.web: Still modifying... [id=<RESOURCE_ID>, 00m20s elapsed]
+aws_ec2_instance_state.web: Modifications complete after 21s [id=<RESOURCE_ID>]
+
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+
+Outputs:
+
+bootstrap_document = "portfolio-day1-terraform-bootstrap"
+bucket_names = tomap({
+  "logs" = "<LOG_BUCKET>"
+  "static" = "<STATIC_BUCKET>"
+})
+data_volume_id = "<RESOURCE_ID>"
+efs_id = "<RESOURCE_ID>"
+instance_id = "<RESOURCE_ID>"
+instance_state = "running"
+snapshot_id = "<RESOURCE_ID>"
+vpc_id = "<RESOURCE_ID>"

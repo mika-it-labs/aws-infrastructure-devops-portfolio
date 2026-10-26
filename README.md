@@ -4,6 +4,8 @@
 
 構築日: **2026-10-26** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1実施分**
 
+> **Terraform対応済み:** [IaCコードと操作手順](terraform/README.md) / [取り込み・適用の実施記録](docs/terraform-result.md)
+
 > 最初に読む資料: [サマリー](docs/summary.md) → [設計判断](docs/design.md) → [検証結果](docs/verification.md)
 
 ![Day 1構成図](assets/architecture.svg)
@@ -17,6 +19,7 @@
 | Web / DB | Apache → Tomcat → PostgreSQLのJSPアプリ | HTTP応答とDBの実データを照合 |
 | ストレージ | 暗号化EBS・EFS、非公開S3 | マウント・読み書き・S3成果物回収 |
 | 運用 | CloudWatchログ4種類、アラーム5件 | 実イベント・メトリクスの到着確認 |
+| IaC | Terraformへの取り込み・起動/停止・SSM構成適用 | 実行計画・apply・動作確認 |
 | コスト管理 | 10/30/50 USDの月次予算、EC2停止 | 停止状態・スナップショット完了確認 |
 
 **動作確認結果**
@@ -61,4 +64,6 @@ Day 2以降のAurora、ロードバランサー、ECS、CI/CD、非同期連携�
 公開版ではアカウントID・実リソースID・IP・ARNなどを置換しています。秘密情報、認証情報、未加工の状態ファイルは含めていません。原本は公開用フォルダーとは別に保管しています。
 
 [公開前の検査結果](docs/publication-checks.md)
+
+
 

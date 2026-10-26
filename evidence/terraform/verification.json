@@ -1,0 +1,22 @@
+{
+    "CommandId": "<EXECUTION_ID>",
+    "InstanceId": "<RESOURCE_ID>",
+    "Comment": "Terraform Day1 post-apply verification",
+    "DocumentName": "AWS-RunShellScript",
+    "DocumentVersion": "$DEFAULT",
+    "PluginName": "aws:runShellScript",
+    "ResponseCode": 0,
+    "ExecutionStartDateTime": "2026-10-26T06:00:37.726Z",
+    "ExecutionElapsedTime": "PT0.687S",
+    "ExecutionEndDateTime": "2026-10-26T06:00:37.726Z",
+    "Status": "Success",
+    "StatusDetails": "Success",
+    "StandardOutputContent": "\n=== OS / security ===\nRed Hat Enterprise Linux release 9.8 (Plow)\n5.14.0-687.60.1.el9_8.x86_64\nTimezone=Asia/Tokyo\nEnforcing\nhttpd_can_network_connect --> on\ndhcpv6-client http\n\n=== services ===\nhttpd: active\nenabled\ntomcat: active\nenabled\npostgresql: active\nenabled\namazon-ssm-agent: active\nenabled\namazon-cloudwatch-agent: active\nenabled\n\n=== application HTTP / DB query ===\n\n<!doctype html><html lang=\"ja\"><meta charset=\"UTF-8\"><title>AWS Portfolio Day 1</title><body>\n<h1>AWS Portfolio Day 1</h1>\n<p>Day 1: Apache -> Tomcat -> PostgreSQL OK</p>\n</body></html>\n\n=== database ===\n id |                 message                  \n----+------------------------------------------\n  1 | Day 1: Apache -> Tomcat -> PostgreSQL OK\n(1 row)\n\n\n=== storage ===\nNAME        SERIAL                SIZE FSTYPE MOUNTPOINTS\nnvme0n1     <ROOT_VOLUME_SERIAL>   15G        \n--nvme0n1p1                         1M        \n--nvme0n1p2                       200M vfat   /boot/efi\n--nvme0n1p3                         1G xfs    /boot\n--nvme0n1p4                      13.8G xfs    /\nnvme1n1     <DATA_VOLUME_SERIAL>    8G xfs    /var/lib/pgsql\nTARGET         SOURCE       FSTYPE OPTIONS\n/var/lib/pgsql /dev/nvme1n1 xfs    rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,sunit=8,swidth=8,noquota\nTARGET      SOURCE        FSTYPE OPTIONS\n/mnt/shared <EFS_MOUNT_IP>:/ nfs4   rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=<EC2_PRIVATE_IP>,local_lock=none,addr=<EFS_MOUNT_IP>\nportfolio Day 1 shared filesystem verified\n\n=== listeners ===\nLISTEN 0      244             127.0.0.1:5432      0.0.0.0:*    users:((\"postmaster\",pid=2586,fd=7))                                                                                       \nLISTEN 0      100    [::ffff:127.0.0.1]:8080            *:*    users:((\"java\",pid=792,fd=45))                                                                                             \nLISTEN 0      511                     *:80              *:*    users:((\"httpd\",pid=3108,fd=4),(\"httpd\",pid=915,fd=4),(\"httpd\",pid=914,fd=4),(\"httpd\",pid=870,fd=4),(\"httpd\",pid=813,fd=4))\nLISTEN 0      244                 [::1]:5432         [::]:*    users:((\"postmaster\",pid=2586,fd=6))                                                                                       \n\n=== agent ===\n{\n  \"status\": \"running\",\n  \"starttime\": \"2026-10-26T05:59:46+00:00\",\n  \"configstatus\": \"configured\",\n  \"version\": \"1.300074.0b1920\"\n}\n",
+    "StandardOutputUrl": "",
+    "StandardErrorContent": "",
+    "StandardErrorUrl": "",
+    "CloudWatchOutputConfig": {
+        "CloudWatchLogGroupName": "",
+        "CloudWatchOutputEnabled": false
+    }
+}

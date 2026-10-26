@@ -1,0 +1,22 @@
+aws_ssm_association.bootstrap[0]: Creating...
+aws_ssm_association.bootstrap[0]: Still creating... [00m10s elapsed]
+aws_ssm_association.bootstrap[0]: Still creating... [00m20s elapsed]
+aws_ssm_association.bootstrap[0]: Still creating... [00m30s elapsed]
+aws_ssm_association.bootstrap[0]: Still creating... [00m40s elapsed]
+aws_ssm_association.bootstrap[0]: Creation complete after 44s [id=<EXECUTION_ID>]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+bootstrap_document = "portfolio-day1-terraform-bootstrap"
+bucket_names = tomap({
+  "logs" = "<LOG_BUCKET>"
+  "static" = "<STATIC_BUCKET>"
+})
+data_volume_id = "<RESOURCE_ID>"
+efs_id = "<RESOURCE_ID>"
+instance_id = "<RESOURCE_ID>"
+instance_state = "running"
+snapshot_id = "<RESOURCE_ID>"
+vpc_id = "<RESOURCE_ID>"

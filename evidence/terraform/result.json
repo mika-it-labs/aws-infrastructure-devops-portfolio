@@ -1,0 +1,21 @@
+{
+  "ActiveTemporaryAssociations": 0,
+  "ManagedResourceAddressesAtEnd": 44,
+  "PostApplyVerification": "Success",
+  "FinalPlan": "No changes",
+  "TerraformVersion": "1.16.2",
+  "FinalPlanDetailedExitCode": 0,
+  "ConfigurationAssociationStatus": "Success",
+  "Adoption": {
+    "Destroyed": 0,
+    "Imported": 43,
+    "Changed": 28,
+    "Added": 1
+  },
+  "InstanceState": "stopped",
+  "SnapshotState": "completed",
+  "ImportedResourceAddresses": 43,
+  "BlankAccountRebuildTested": false,
+  "CheckedAtJST": "2026-10-26T15:07:14.9266483+09:00",
+  "AwsProviderVersion": "6.70.0"
+}

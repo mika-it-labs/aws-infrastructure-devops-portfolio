@@ -1,0 +1,13 @@
+{
+  "AssociationExecutions": [
+    {
+      "AssociationId": "<EXECUTION_ID>",
+      "AssociationVersion": "1",
+      "ExecutionId": "<EXECUTION_ID>",
+      "Status": "Success",
+      "DetailedStatus": "Success",
+      "CreatedTime": "2026-10-26T14:59:17.661+09:00",
+      "ResourceCountByStatus": "{Success=1}"
+    }
+  ]
+}

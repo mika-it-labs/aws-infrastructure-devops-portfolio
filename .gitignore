@@ -20,3 +20,8 @@ request.json
 .DS_Store
 Thumbs.db
 .vscode/
+
+*.tfvars.json
+*.tfplan
+*.local.tf
+*.local.tf.json
