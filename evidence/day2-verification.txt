@@ -1,0 +1,75 @@
+Day 2 / AWS console and Systems Manager Run Command
+実施日: 2026-10-26 / 東京
+以下は画面で確認した状態と出力の抜粋・転記です。
+識別子、IP、DNS、ARN、認証情報は掲載していません。
+
+[1. バックアップと復元ジョブ]
+EBS: 8 GiB、暗号化、7日保持、バックアップ完了、別EBSへの復元完了
+EFS: 151 B、7日保持、バックアップ完了、別EFSへの復元完了
+
+[2. ALB経由の通常応答]
+実施時刻: 17:14:31 JST
+ステータス: 成功 / レスポンスコード: 0
+httpd: active
+tomcat: active
+postgresql: active
+<p>Day 1: Apache -> Tomcat -> PostgreSQL OK</p>
+
+[3. EBS復元DBのSQL検証]
+ステータス: 成功 / レスポンスコード: 0
+PostgreSQL major version: 13
+waiting for server to start.... done
+server started
+Day 1: Apache -> Tomcat -> PostgreSQL OK
+active
+
+復元EBSを別マウントポイントへ接続。
+DBを127.0.0.1:55432で一時起動し、learning_logのid=1をSELECT。
+最後に復元DBを停止し、追加ボリュームをアンマウントする処理を実行。
+元のPostgreSQLはactive。
+
+[4. 復元EFS・NLB・障害復旧の検証]
+ステータス: 成功 / レスポンスコード: 0
+
+portfolio Day 1 shared filesystem verified
+EFS_RESTORE_CONTENT_MATCH=PASS
+NLB_HTTP=200
+<p>Day 1: Apache -> Tomcat -> PostgreSQL OK</p>
+2026-10-26T17:47:22+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:47:32+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:47:42+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:47:52+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:48:02+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:48:12+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:48:22+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:48:32+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:48:42+09:00 ALB_FAULT_HTTP=503
+2026-10-26T17:48:52+09:00 ALB_FAULT_HTTP=503
+<p>Day 1: Apache -> Tomcat -> PostgreSQL OK</p>
+active
+active
+active
+FAULT_RECOVERY=PASS
+
+[5. CloudWatch履歴（コンソールのUTC表記）]
+2026-10-26 08:48:14 データ不足からOKに更新したアラーム。
+2026-10-26 08:50:14 OKからアラーム状態に更新したアラーム。
+2026-10-26 08:58:14 アラーム状態からOKに更新したアラーム。
+
+[6. S3ログ]
+ELBAccessLogTestFileの作成を確認。
+2026/10/26のALBログフォルダーに.log.gz到着を確認。
+当該ログファイルの時刻部分: 20261026T0850Z
+ファイル名のアカウントID・ALB識別子・IP・乱数部分は省略。
+
+[7. 終了確認]
+EC2: 停止済み
+ALB/NLB: 削除成功、一覧0台
+ターゲットグループ: 一覧0件
+復元EBS: デタッチ、削除成功
+復元EFSと接続口: 削除成功
+今回の復旧ポイント2件: 削除済み
+Backupプラン: リソース割り当て0件
+Day 2の5xxアラーム: 削除後に不存在を確認
+一時的なS3ログ配信許可: 除去して保存成功
+Day 1元データとS3の証跡: 保持
