@@ -17,16 +17,7 @@ phases:
       - mvn -B -f day3/pom.xml clean verify
       - docker build -t "$IMAGE_URI" day3
       - docker run -d --name portfolio-check -p 127.0.0.1:18080:8080 "$IMAGE_URI"
-      - |
-        for attempt in {1..60}; do
-          if curl -fsS http://127.0.0.1:18080/portfolio/health.jsp | grep -q OK; then break; fi
-          sleep 2
-        done
-        curl -fsS http://127.0.0.1:18080/portfolio/health.jsp | grep -q OK
-        curl -fsS http://127.0.0.1:18080/portfolio/ | tee /tmp/portfolio-container.html
-        grep -q 'AWS Portfolio Day 3' /tmp/portfolio-container.html
-        grep -q 'DB_STATUS=UNCONFIGURED' /tmp/portfolio-container.html
-        echo CONTAINER_SMOKE_TEST=PASS
+      - bash day3/smoke-test.sh
     finally:
       - docker logs portfolio-check || true
       - docker rm -f portfolio-check || true
