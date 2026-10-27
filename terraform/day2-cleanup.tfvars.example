@@ -1,0 +1,7 @@
+# Keep the imported empty plan, delete only Day 2 runtime/restore resources.
+day2_enabled                   = false
+manage_day2_backup             = true
+day2_backup_assignment_enabled = false
+day2_restore_enabled           = false
+instance_state                 = "stopped"
+configure_instance             = false
