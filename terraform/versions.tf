@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.5.0, < 2.0.0"
+  required_version = ">= 1.7.0, < 2.0.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -51,3 +51,4 @@ locals {
     private_b = { cidr = "10.40.12.0/24", az = 1, public = false, label = "PrivateB" }
   }
 }
+
