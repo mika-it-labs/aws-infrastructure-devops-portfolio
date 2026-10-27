@@ -2,6 +2,7 @@
 <%! private String escape(String s) { return s == null ? "" : s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;").replace("\"","&quot;").replace("'","&#39;"); } %>
 <!doctype html><html lang="ja"><meta charset="UTF-8"><title>AWS Portfolio Day 3</title><body>
 <h1>AWS Portfolio Day 3</h1><p>Maven WAR / Tomcat container / CI/CD</p>
+<p>リリース: day3-cicd-v1</p>
 <%
 Properties p = new Properties();
 File dbConfig = new File("/etc/portfolio/db.properties");
