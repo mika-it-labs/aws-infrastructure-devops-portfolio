@@ -1,0 +1,15 @@
+{
+  "instance_state": "stopped",
+  "day2_load_balancers": 0,
+  "day2_target_groups": 0,
+  "original_db_volume_present": true,
+  "original_efs_state": "available",
+  "original_snapshot_state": "completed",
+  "restored_ebs_remaining": 0,
+  "restored_efs_remaining": 0,
+  "test_recovery_points_remaining": 0,
+  "backup_assignments": 0,
+  "day2_alarms": 0,
+  "temporary_log_policy_remaining": 0,
+  "managed_resource_addresses": 45
+}
