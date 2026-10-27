@@ -6,7 +6,7 @@ Day 1と、Freeプランで実施可能なDay 2のバックアップ復元・負
 |---|---|---|---|
 | Day 1 | 完了 | RHEL / Apache / Tomcat / PostgreSQL / EBS / EFS / S3 / CloudWatch | 再起動後の動作・実ログ・停止・スナップショット |
 | Day 2 | 実施済み・Aurora移行は保留 | 内部ALB/NLB、AWS Backup、5xx検知、障害復旧 | 復元DBのSQL、復元EFSの一致、HTTP 200/503/復旧、アラーム往復、追加リソース削除 |
-| Day 3 | 作業途中 | ECR / CodeBuild / ECS Fargate / 内部ALB / API Gatewayを構築 | 修正版ビルド・ECS更新・内部ALB200・API内部テスト200。公開API・CodePipeline・CodeDeployは未完了 |
+| Day 3 | 作業途中 | ECR / CodeBuild / ECS Fargate / 内部ALB / API Gatewayを構築 | 修正版ビルド・ECS更新・内部ALB200・API内部テスト200・公開APIのキーなし403/キーあり200。CodePipeline・CodeDeployは未完了 |
 | Day 4 | 未実施 | SNS / Step Functions / EventBridge / 運用演習 | 成功/失敗通知、障害復旧、削除と費用記録 |
 
 ## 目指すストーリー
