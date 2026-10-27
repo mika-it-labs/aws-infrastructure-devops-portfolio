@@ -10,7 +10,7 @@ GitHubのmainブランチへのアプリ変更を起点に、**CodePipeline → 
 |---|---|
 | 起点のコミット | 02e02e35562318b3ce86e5dd8fae3eb14500a51e |
 | CodePipeline | Source / Build / Deployがすべて成功 |
-| CodeBuild | build-4。ソース取得・ビルド・コンテナ起動検証・ECR push・成果物出力が成功 |
+| CodeBuild | build-5。ソース取得・ビルド・コンテナ起動検証・ECR push・成果物出力が成功 |
 | ECS | portfolio-day3-task:3、デプロイ成功、実行中1件・保留中0件 |
 | APIキーなし | HTTP 403 |
 | APIキーあり | HTTP 200 |
@@ -18,7 +18,7 @@ GitHubのmainブランチへのアプリ変更を起点に、**CodePipeline → 
 | DB | DB_STATUS=UNCONFIGURED。コンテナからのDB接続は未設定 |
 | 配備後のAPI確認時刻 | 2026-10-27 14:25:45 JST |
 
-CodeBuildのbuild-4ログでは、DOWNLOAD_SOURCE、INSTALL、PRE_BUILD、BUILD、POST_BUILD、UPLOAD_ARTIFACTSの各段階でSUCCEEDEDを確認しました。コンソール表示のUTC時刻は05:22:13〜05:23:12で、日本時間では14:22:13〜14:23:12です。
+CodeBuildのbuild-5ログでは、DOWNLOAD_SOURCE、INSTALL、PRE_BUILD、BUILD、POST_BUILD、UPLOAD_ARTIFACTSの各段階でSUCCEEDEDを確認しました。コンソール表示のUTC時刻は05:22:13〜05:23:12で、日本時間では14:22:13〜14:23:12です。
 
 利用者が停止前にコンソールで結果を確認する希望のため、**この記録時点ではEC2・ECS・内部ALBを稼働させています。停止・削除完了の記録ではありません。**
 
@@ -28,7 +28,7 @@ CodeBuildのbuild-4ログでは、DOWNLOAD_SOURCE、INSTALL、PRE_BUILD、BUILD�
 flowchart LR
   GitHub[GitHub main / day3配下のPush] --> CP[CodePipeline]
   CP --> Build[CodeBuild / Maven + Docker + HTTP検証]
-  Build --> ECR[ECR / build-4]
+  Build --> ECR[ECR / build-5]
   Build --> S3[S3 / WAR・イメージ定義・検証成果物]
   CP -->|ECS標準デプロイ| ECS[ECS Fargate / Tomcat 9・JDK 17]
   ECR --> ECS
@@ -75,7 +75,7 @@ CodePipeline専用の portfolio-day3-pipeline-role を作成し、CodePipeline�
 
 初回実行では、S3の成果物保存先がパイプライン名から短縮された **portfolio-day3-pipel/** となり、準備したフルネームのパスと一致せずPutObjectが拒否されました。対象をこの実際のプレフィックスに修正し、ソース取得に成功しました。
 
-次にbuild-3がDOWNLOAD_SOURCEで停止しました。既存のCodeBuildロールにはカスタム成果物バケットへの書き込みはありましたが、今回の入力成果物を読む許可がありませんでした。確認・承認のうえ、同じプレフィックスだけにGetObjectとGetObjectVersionを追加しました。書き込み権限は増やしていません。修正後のアプリコミットでbuild-4が成功しました。
+次に初回のパイプライン経由ビルドがDOWNLOAD_SOURCEで停止しました。既存のCodeBuildロールにはカスタム成果物バケットへの書き込みはありましたが、今回の入力成果物を読む許可がありませんでした。確認・承認のうえ、同じプレフィックスだけにGetObjectとGetObjectVersionを追加しました。書き込み権限は増やしていません。修正後のアプリコミットでbuild-5が成功しました。
 
 公開用の権限例:
 
@@ -87,11 +87,11 @@ CodePipeline専用の portfolio-day3-pipeline-role を作成し、CodePipeline�
 
 ## アプリと検証の不具合修正
 
-1. 初回build-1は11:46〜11:47 JSTに成功しましたが、実際のアプリ画面はHTTP 500でした。一方、ヘルスチェックは200でした。
+1. 初回の手動ビルドは11:46〜11:47 JSTに成功しましたが、実際のアプリ画面はHTTP 500でした。一方、ヘルスチェックは200でした。
 2. JSPの暗黙変数configとローカル変数が衝突していたため、ローカル変数をdbConfigへ変更しました。
 3. 初回のビルド用シェルには、途中のcurl失敗を後続の成功表示が隠す問題もありました。独立したsmoke-test.shでset -euo pipefail、curl -f、本文検査を使う形へ修正しました。
-4. build-2で修正版を検証し、ECSのリビジョン2へ手動更新しました。
-5. アプリにday3-cicd-v1という表示を追加したコミットを作成。main / day3/**の条件でパイプラインが自動起動し、build-4とECSへの配備が成功しました。
+4. 修正後の手動ビルドで実画面を検証し、ECSのリビジョン2へ手動更新しました。
+5. アプリにday3-cicd-v1という表示を追加したコミットを作成。main / day3/**の条件でパイプラインが自動起動し、build-5とECSへの配備が成功しました。
 6. 配備後の公開APIで、キーなし403・キーあり200・day3-cicd-v1の本文を確認しました。
 
 ヘルスチェック、コンテナ内の実画面、公開経路、配備されたリリースの一致を別々に確認しました。単発の疎通検証であり、負荷試験や可用性試験ではありません。
