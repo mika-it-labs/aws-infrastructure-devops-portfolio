@@ -1,0 +1,9 @@
+# Copy outside this public repository and apply after the private Day 1 variables.
+day2_enabled                   = true
+manage_day2_backup             = true
+day2_backup_assignment_enabled = true
+day2_run_id                    = "day2-your-run"
+instance_state                 = "running"
+configure_instance             = false
+# Set true only after AWS Backup restore jobs completed and actual IDs are supplied.
+day2_restore_enabled           = false
