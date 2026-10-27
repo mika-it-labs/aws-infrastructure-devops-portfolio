@@ -83,3 +83,8 @@ Linux設定は既存の `scripts/bootstrap.sh` をSSM Documentに埋め込みま
 - [EC2とEBSの管理境界](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)
 - [起動・停止状態の管理](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_instance_state)
 - [lifecycle / ignore_changes](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)
+
+## Day 2の再作成・復元検証
+
+内部ALB/NLB、S3アクセスログ、5xxアラーム、AWS Backupを[Day 2のTerraform手順](DAY2.md)に追加しています。復元ジョブはCLIで実行し、復元したEBS・EFSはTerraformへimportして接続・タグ・削除を管理します。[実施結果](../docs/day2-terraform-result.md)を参照してください。Day 2を無効化した計画で、元のDay 1データを保持しながら追加分を整理できます。
+
