@@ -2,7 +2,9 @@
 
 **RHEL上のApache・Tomcat・PostgreSQLをAWSに構築し、再起動後の動作・監視・停止まで検証した学習ポートフォリオです。**
 
-構築日: **2026-10-26** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1 / Day 2の実施分（Aurora移行は保留）**
+構築日: **2026-10-26** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1 / Day 2 / Day 3の検証済み範囲（Day 3は作業途中、Aurora移行は保留）**
+
+> **Day 3コンソール実施中:** [ECR・CodeBuild・ECS・内部ALB・API統合の検証記録](docs/day3-console.md)。コンテナのHTTP 200とAPI内部テストを確認。自動デプロイと公開API呼び出しは未完了です。
 
 > **Day 2コンソール実施済み:** [バックアップ復元・ALB/NLB・障害復旧の記録](docs/day2-console.md) / [検証出力](evidence/day2-verification.txt)
 
@@ -23,6 +25,8 @@
 | Web / DB | Apache → Tomcat → PostgreSQLのJSPアプリ | HTTP応答とDBの実データを照合 |
 | ストレージ | 暗号化EBS・EFS、非公開S3 | マウント・読み書き・S3成果物回収 |
 | 運用 | CloudWatchログ4種類、アラーム5件 | 実イベント・メトリクスの到着確認 |
+| コンテナ | ECR / CodeBuild / ECS Fargate / 内部ALB | 実コンテナの起動・画面本文・HTTP 200 |
+| API | REST API / VPC Link V2 / 使用量プラン・キー | コンソール内部テスト200。公開呼び出しは未検証 |
 | IaC | Terraformへの取り込み・起動/停止・SSM構成適用 | 実行計画・apply・動作確認 |
 | コスト管理 | 月次予算、EC2停止 | 停止状態・スナップショット完了確認 |
 
@@ -63,7 +67,7 @@ Day 1: Apache -> Tomcat -> PostgreSQL OK
 
 本成果物は学習環境の構築・検証記録です。実務の本番導入実績、可用性保証、負荷試験、復旧目標の達成を示すものではありません。AI支援で構築・記録を行い、AWS APIとサーバーの実行結果をもとに検証しています。
 
-Day 2ではバックアップからのDB・EFS復元、内部ALB/NLB、5xx検知と障害復旧、追加リソースの削除まで実施しました。Aurora移行はFreeプラン維持の方針で保留し、ECS・CI/CD・非同期連携は未実施です。[実施範囲](docs/day2-console.md)と[ロードマップ](docs/roadmap.md)に分けています。
+Day 2ではバックアップからのDB・EFS復元、内部ALB/NLB、5xx検知と障害復旧、追加リソースの削除まで実施しました。Aurora移行はFreeプラン維持の方針で保留しています。Day 3ではECR、CodeBuild、ECS Fargate、内部ALBとAPIの内部統合テストまで進みました。CodePipelineの自動デプロイ、CodeDeploy、公開APIの実呼び出し、Day 4の非同期連携は未完了です。[Day 3の実施範囲・現在の稼働状態](docs/day3-console.md)を明記しています。[実施範囲](docs/day2-console.md)と[ロードマップ](docs/roadmap.md)に分けています。
 
 公開版ではアカウントID・実リソースID・IP・ARNなどを置換しています。秘密情報、認証情報、未加工の状態ファイルは含めていません。原本は公開用フォルダーとは別に保管しています。
 
