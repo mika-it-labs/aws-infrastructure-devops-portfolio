@@ -1,0 +1,20 @@
+SOURCE: day2-import.txt
+Import successful!
+
+SOURCE: day2-apply.txt
+Apply complete! Resources: 10 added, 3 changed, 0 destroyed.
+
+SOURCE: day2-restored-apply.txt
+aws_efs_file_system.day2_restored[0]: Import complete [id=<RESOURCE_ID>]
+aws_ebs_volume.day2_restored[0]: Import complete [id=<RESOURCE_ID>]
+Apply complete! Resources: 2 imported, 3 added, 2 changed, 0 destroyed.
+
+SOURCE: day2-idempotent-plan.txt
+No changes. Your infrastructure matches the configuration.
+
+SOURCE: day2-cleanup-apply.txt
+Apply complete! Resources: 0 added, 2 changed, 15 destroyed.
+
+SOURCE: day2-final-plan.txt
+No changes. Your infrastructure matches the configuration.
+
