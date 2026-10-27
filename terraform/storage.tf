@@ -25,10 +25,17 @@ resource "aws_s3_bucket_policy" "this" {
   bucket   = aws_s3_bucket.this[each.key].id
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [
+    Statement = concat([
       { Effect = "Allow", Principal = { AWS = aws_iam_role.ec2.arn }, Action = ["s3:PutObject", "s3:GetObject"], Resource = "${aws_s3_bucket.this[each.key].arn}/*" },
       { Effect = "Deny", Principal = "*", Action = "s3:*", Resource = [aws_s3_bucket.this[each.key].arn, "${aws_s3_bucket.this[each.key].arn}/*"], Condition = { Bool = { "aws:SecureTransport" = "false" } } }
-    ]
+      ], var.day2_enabled && each.key == "logs" ? [{
+        Sid       = "PortfolioDay2ALBLogs"
+        Effect    = "Allow"
+        Principal = { Service = "logdelivery.elasticloadbalancing.amazonaws.com" }
+        Action    = "s3:PutObject"
+        Resource  = "${aws_s3_bucket.this[each.key].arn}/${var.day2_log_prefix}/AWSLogs/${data.aws_caller_identity.current.account_id}/*"
+        Condition = { ArnLike = { "aws:SourceArn" = "arn:aws:elasticloadbalancing:${var.region}:${data.aws_caller_identity.current.account_id}:loadbalancer/*" } }
+    }] : [])
   })
   depends_on = [aws_s3_bucket_public_access_block.this]
 }
@@ -68,3 +75,4 @@ resource "aws_ebs_snapshot" "postgres" {
   depends_on  = [aws_ec2_instance_state.web]
   lifecycle { prevent_destroy = true }
 }
+
