@@ -1,10 +1,10 @@
 # AWS RHEL Web Application Portfolio
 
-**RHEL上のApache・Tomcat・PostgreSQLをAWSに構築し、再起動後の動作・監視・停止まで検証した学習ポートフォリオです。**
+**RHEL上のApache・Tomcat・PostgreSQLから、ECSのコンテナ配備・GitHub連携のCI/CD・API Gatewayまで段階的に検証した学習ポートフォリオです。**
 
-構築日: **2026-10-26** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1 / Day 2 / Day 3の検証済み範囲（Day 3は作業途中、Aurora移行は保留）**
+実施日: **2026-10-26〜27** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1〜3の実施分（Aurora移行・CodeDeployは保留）**
 
-> **Day 3コンソール実施中:** [ECR・CodeBuild・ECS・内部ALB・API統合の検証記録](docs/day3-console.md)。コンテナのHTTP 200、公開APIのキーなし403・キーあり200を確認。CodePipelineの自動デプロイは未完了です。
+> **Day 3コンソール検証済み:** [ECR・CodeBuild・ECS・内部ALB・API統合の検証記録](docs/day3-console.md)。mainへのアプリ変更 → CodePipeline → CodeBuild → ECSの全ステージが成功。公開APIのキーなし403・キーあり200と新しいリリース表示を確認しました。
 
 > **Day 2コンソール実施済み:** [バックアップ復元・ALB/NLB・障害復旧の記録](docs/day2-console.md) / [検証出力](evidence/day2-verification.txt)
 
@@ -25,7 +25,7 @@
 | Web / DB | Apache → Tomcat → PostgreSQLのJSPアプリ | HTTP応答とDBの実データを照合 |
 | ストレージ | 暗号化EBS・EFS、非公開S3 | マウント・読み書き・S3成果物回収 |
 | 運用 | CloudWatchログ4種類、アラーム5件 | 実イベント・メトリクスの到着確認 |
-| コンテナ | ECR / CodeBuild / ECS Fargate / 内部ALB | 実コンテナの起動・画面本文・HTTP 200 |
+| コンテナ / CI/CD | ECR / CodeBuild / CodePipeline / ECS Fargate / 内部ALB | コミットから全ステージ成功・新しいリリースのHTTP 200 |
 | API | REST API / VPC Link V2 / 使用量プラン・キー | 内部テスト200、公開HTTPSのキーなし403・キーあり200 |
 | IaC | Terraformへの取り込み・起動/停止・SSM構成適用 | 実行計画・apply・動作確認 |
 | コスト管理 | 月次予算、EC2停止 | 停止状態・スナップショット完了確認 |
@@ -67,7 +67,7 @@ Day 1: Apache -> Tomcat -> PostgreSQL OK
 
 本成果物は学習環境の構築・検証記録です。実務の本番導入実績、可用性保証、負荷試験、復旧目標の達成を示すものではありません。AI支援で構築・記録を行い、AWS APIとサーバーの実行結果をもとに検証しています。
 
-Day 2ではバックアップからのDB・EFS復元、内部ALB/NLB、5xx検知と障害復旧、追加リソースの削除まで実施しました。Aurora移行はFreeプラン維持の方針で保留しています。Day 3ではECR、CodeBuild、ECS Fargate、内部ALBとAPIの内部統合テストまで進みました。公開APIは実呼び出しで403/200を確認しました。CodePipelineの自動デプロイ、CodeDeploy、Day 4の非同期連携は未完了です。[Day 3の実施範囲・現在の稼働状態](docs/day3-console.md)を明記しています。[実施範囲](docs/day2-console.md)と[ロードマップ](docs/roadmap.md)に分けています。
+Day 2ではバックアップからのDB・EFS復元、内部ALB/NLB、5xx検知と障害復旧、追加リソースの削除まで実施しました。Aurora移行はFreeプラン維持の方針で保留しています。Day 3ではECR、CodeBuild、ECS Fargate、内部ALB、API Gatewayに加え、GitHubの変更による自動ビルド・ECS配備まで検証しました。公開APIは実呼び出しで403/200を確認しました。CodeDeploy、コンテナのDB接続、Day 4の非同期連携は保留・未実施です。[Day 3の実施範囲・現在の稼働状態](docs/day3-console.md)を明記しています。利用者のコンソール確認のため、Day 3のEC2・ECS・ALBは稼働を継続しています。停止・削除はまだ完了していません。[実施範囲](docs/day2-console.md)と[ロードマップ](docs/roadmap.md)に分けています。
 
 公開版ではアカウントID・実リソースID・IP・ARNなどを置換しています。秘密情報、認証情報、未加工の状態ファイルは含めていません。原本は公開用フォルダーとは別に保管しています。
 
