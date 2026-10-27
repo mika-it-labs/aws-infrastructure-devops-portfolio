@@ -4,8 +4,8 @@
 <h1>AWS Portfolio Day 3</h1><p>Maven WAR / Tomcat container / CI/CD</p>
 <%
 Properties p = new Properties();
-File config = new File("/etc/portfolio/db.properties");
-if (config.isFile()) { try (InputStream f = new FileInputStream(config)) { p.load(f); } }
+File dbConfig = new File("/etc/portfolio/db.properties");
+if (dbConfig.isFile()) { try (InputStream f = new FileInputStream(dbConfig)) { p.load(f); } }
 String url = System.getenv("DB_URL");
 if (url == null || url.isEmpty()) url = p.getProperty("url");
 String user = System.getenv("DB_USER");
