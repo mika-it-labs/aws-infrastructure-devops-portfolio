@@ -6,7 +6,7 @@ Day 1と、Freeプランで実施可能なDay 2のバックアップ復元・負
 |---|---|---|---|
 | Day 1 | 完了 | RHEL / Apache / Tomcat / PostgreSQL / EBS / EFS / S3 / CloudWatch | 再起動後の動作・実ログ・停止・スナップショット |
 | Day 2 | 実施済み・Aurora移行は保留 | 内部ALB/NLB、AWS Backup、5xx検知、障害復旧 | 復元DBのSQL、復元EFSの一致、HTTP 200/503/復旧、アラーム往復、追加リソース削除 |
-| Day 3 | 作業途中 | ECR / CodeBuild / ECS Fargate / 内部ALB / API Gatewayを構築 | 修正版ビルド・ECS更新・内部ALB200・API内部テスト200・公開APIのキーなし403/キーあり200。CodePipeline・CodeDeployは未完了 |
+| Day 3 | 実施済み・CodeDeployとDB接続は保留 | ECR / CodeBuild / ECS Fargate / 内部ALB / API Gatewayを構築 | 修正版ビルド・ECS更新・内部ALB200・API内部テスト200・公開APIのキーなし403/キーあり200。コミット起点のCodePipeline全ステージ成功。CodeDeployは保留 |
 | Day 4 | 未実施 | SNS / Step Functions / EventBridge / 運用演習 | 成功/失敗通知、障害復旧、削除と費用記録 |
 
 ## 目指すストーリー
@@ -18,4 +18,4 @@ Linux上に同居するWeb/DBから始め、DBをマネージド化し、アプ�
 Day 2の根拠と未実施項目は[コンソール実施記録](day2-console.md)を参照してください。Day 2のTerraformによる再作成・復元検証は2026-10-27に追加しました。[IaC実施記録](day2-terraform-result.md)を参照してください。複数EC2間のフェイルオーバーは実施していません。
 
 
-Day 3は2026-10-27にコンソールで実施中です。[実施記録](day3-console.md)に、不具合修正・検証根拠・未実施項目・稼働中のリソースを記録しています。コンテナのDB接続は未設定です。
+Day 3は2026-10-27にコンソールで自動ビルド・ECS配備・公開API呼び出しまで検証しました。[実施記録](day3-console.md)に、不具合修正・検証根拠・未実施項目・利用者の確認のため稼働を継続しているリソースを記録しています。コンテナのDB接続は未設定です。
