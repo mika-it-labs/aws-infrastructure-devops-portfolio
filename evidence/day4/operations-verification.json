@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-28",
+  "region": "ap-northeast-1",
+  "method": "AWS console",
+  "baseline": {
+    "http_statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "database_marker": "PostgreSQL OK",
+    "services": [
+      "httpd active",
+      "tomcat active",
+      "postgresql active"
+    ]
+  },
+  "fault": {
+    "started_utc": "2026-10-28T09:31:03Z",
+    "tomcat_stopped": true,
+    "http_503_count": 36,
+    "recovered_utc": "2026-10-28T09:37:14Z",
+    "recovery_http_status": 200,
+    "database_checked": true,
+    "marker": "FAULT_RECOVERY=PASS",
+    "ssm_status": "Success"
+  },
+  "notifications": {
+    "alarm": {
+      "subject": "ALARM: \"portfolio-day4-alb-target-5xx\" in Asia Pacific (Tokyo)",
+      "date_header_utc": "2026-10-28T09:34:16+00:00"
+    },
+    "initial_ok": {
+      "date_header_utc": "2026-10-28T09:31:16+00:00",
+      "note": "Initial transition from INSUFFICIENT_DATA; this is not recovery proof."
+    },
+    "recovery_ok": "Awaiting confirmation",
+    "ec2_stopped": {
+      "date_header_utc": "2026-10-28T09:39:23+00:00",
+      "rule": "portfolio-day4-ec2-state",
+      "message_matched": true
+    },
+    "recipient": "User-designated mailbox (redacted)"
+  },
+  "dashboard": {
+    "name": "portfolio-day4-operations",
+    "saved": true,
+    "log_query": "SOURCE '/portfolio/day4/batch' | fields @timestamp, @message | sort @timestamp desc | limit 20",
+    "observed_log_rows": 6,
+    "success_markers": 2,
+    "failure_markers": 1
+  },
+  "cleanup": {
+    "ec2_stop_requested": true,
+    "ec2_stopped_event_received": true,
+    "day4_additions_deleted": false,
+    "cost_finalized": false
+  }
+}
