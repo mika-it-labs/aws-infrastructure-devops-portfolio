@@ -1,0 +1,13 @@
+output "codebuild_project_name" { value = aws_codebuild_project.app.name }
+output "ecr_repository_url" { value = aws_ecr_repository.app.repository_url }
+output "cluster_name" { value = try(aws_ecs_cluster.app[0].name, null) }
+output "service_name" { value = try(aws_ecs_service.app[0].name, null) }
+output "task_definition_arn" { value = try(aws_ecs_task_definition.app[0].arn, null) }
+output "target_group_arn" { value = try(aws_lb_target_group.app[0].arn, null) }
+output "load_balancer_arn" { value = try(aws_lb.app[0].arn, null) }
+output "api_id" { value = try(aws_api_gateway_rest_api.app[0].id, null) }
+output "api_key_id" { value = try(aws_api_gateway_api_key.app[0].id, null) }
+output "api_url" { value = var.deploy_enabled ? "https://${aws_api_gateway_rest_api.app[0].id}.execute-api.${var.region}.amazonaws.com/${aws_api_gateway_stage.app[0].stage_name}" : null }
+output "vpc_link_id" { value = try(aws_apigatewayv2_vpc_link.app[0].id, null) }
+output "pipeline_name" { value = try(aws_codepipeline.app[0].name, null) }
+output "artifact_prefix" { value = local.artifact_prefix }
