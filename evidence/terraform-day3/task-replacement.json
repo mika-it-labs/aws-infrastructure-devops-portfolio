@@ -1,0 +1,7 @@
+{
+  "observed_at": "2026-10-28T16:29:02.9877708+09:00",
+  "unhealthy_event_count": 1,
+  "reason": "ALB health check request timed out",
+  "ecs_replacement_started": true,
+  "root_cause": "Not established; no configuration change made"
+}
