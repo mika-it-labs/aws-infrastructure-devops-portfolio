@@ -26,3 +26,8 @@ Day 1のAWS API応答とSSM経由のコマンド結果から、提出に必要�
 
 [terraform/](terraform/)に取り込み・起動・SSM構成適用・停止と最終差分の実行記録を追加しています。Day 1の元の検証記録は保持し、IaC化後の検証とは別ファイルにしています。
 
+
+
+## Day 3の整理・Terraform再構築
+
+[コンソール環境の終了照合](day3-console-cleanup.json)と、[Terraform再構築の証跡](terraform-day3/)を追加しました。初回確認、コミット起点の自動配備、途中のタスク代替起動、稼働時の差分0、最終削除照合、空stateの確認を分けています。APIキー・実リソースID・生ログ・stateは公開していません。[解説](../docs/day3-terraform-result.md)を参照してください。
