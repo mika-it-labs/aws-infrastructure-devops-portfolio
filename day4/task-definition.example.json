@@ -1,0 +1,50 @@
+{
+  "family": "portfolio-day4-batch",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "containerDefinitions": [
+    {
+      "name": "batch",
+      "image": "public.ecr.aws/amazonlinux/amazonlinux:2023",
+      "essential": true,
+      "command": [
+        "/bin/sh",
+        "-c",
+        "echo BATCH_START; sleep 5; if [ \"${DEMO_FAIL:-false}\" = \"true\" ]; then echo BATCH_RESULT=FAIL; exit 42; fi; echo BATCH_RESULT=SUCCESS; exit 0"
+      ],
+      "environment": [
+        {
+          "name": "DEMO_FAIL",
+          "value": "false"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/portfolio/day4/batch",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-stream-prefix": "batch"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "key": "Project",
+      "value": "portfolio"
+    },
+    {
+      "key": "Day",
+      "value": "4"
+    }
+  ]
+}
