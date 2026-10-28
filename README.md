@@ -4,7 +4,7 @@
 
 実施日: **2026-10-26〜28** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1〜4の実施分（Aurora移行・CodeDeployは保留）**
 
-> **Day 4コンソール検証:** [実施記録](docs/day4-console.md) / [定義例](day4/README.md)。SNS実受信、Step Functions → ECSの成功/失敗、EventBridge自動起動、Tomcat停止と復旧、EC2停止通知を確認しました。追加リソースの削除と最終費用確認は未完了です。
+> **Day 4コンソール検証:** [実施記録](docs/day4-console.md) / [定義例](day4/README.md)。SNS実受信、Step Functions → ECSの成功/失敗、EventBridge自動起動、Tomcat停止と復旧、EC2停止通知を確認しました。Day 4追加分は削除し、EC2停止を確認しました。[終了証跡](evidence/day4/cleanup-verification.json)を収録しています。Day 4単独の確定額は未算出です。
 
 > **Day 3 Terraform再構築・終了確認:** [実行結果](docs/day3-terraform-result.md) / [コードと再現手順](terraform/day3/README.md)。コンソール構成の整理後、26リソースを再作成し、コミット起点の自動配備・API 403/200を検証して追加分を削除しました。EC2は停止しています。
 
