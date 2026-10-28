@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-28T15:55:54.4693371+09:00",
+  "ec2_state": "stopped",
+  "original_ebs_retained": true,
+  "original_efs_state": "available",
+  "original_snapshot_state": "completed",
+  "day3_albs": 0,
+  "day3_target_groups": 0,
+  "day3_clusters": 0,
+  "day3_active_task_definitions": 0,
+  "day3_rest_apis": 0,
+  "day3_usage_plans": 0,
+  "day3_api_keys": 0,
+  "day3_vpc_links": 0,
+  "day3_ecr_repositories": 0,
+  "day3_pipelines": 0,
+  "day3_build_projects": 0,
+  "day3_task_security_groups": 0,
+  "day3_log_groups": 0,
+  "day3_execution_roles": 0,
+  "retained_connection_status": "AVAILABLE",
+  "retained_s3_evidence": true
+}
