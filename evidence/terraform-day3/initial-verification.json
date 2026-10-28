@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-10-28T16:17:08.5580758+09:00",
+  "pipeline_status": "Succeeded",
+  "pipeline_trigger": "CreatePipeline",
+  "source_commit": "c5f90ff67374b7da333faa81deeabfa977da4cc5",
+  "action_statuses": [
+    {
+      "stageName": "Deploy",
+      "status": "Succeeded"
+    },
+    {
+      "stageName": "Build",
+      "status": "Succeeded"
+    },
+    {
+      "stageName": "Source",
+      "status": "Succeeded"
+    }
+  ],
+  "ecs_running": 1,
+  "ecs_pending": 0,
+  "task_revision": "5",
+  "healthy_targets": 1,
+  "no_key_http": 403,
+  "with_key_http": 200,
+  "expected_release": "day3-cicd-v1",
+  "release_found": true,
+  "db_status": "UNCONFIGURED",
+  "result": "PASS"
+}
