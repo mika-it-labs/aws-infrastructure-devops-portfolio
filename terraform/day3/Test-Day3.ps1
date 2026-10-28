@@ -2,7 +2,7 @@ param(
  [Parameter(Mandatory=$true)][string]$Profile,
  [Parameter(Mandatory=$true)][string]$StateDirectory,
  [string]$CommitId,
- [string]$ExpectedRelease='day3-cicd-v1'
+ [string]$ExpectedRelease='day3-terraform-v1'
 )
 $ErrorActionPreference='Stop';$env:AWS_PAGER=''
 $StateDirectory=[IO.Path]::GetFullPath($StateDirectory)
@@ -37,9 +37,16 @@ $service=Read-Aws @('ecs','describe-services','--cluster',$outputs.cluster_name.
 $service|ConvertTo-Json -Depth 60|Set-Content (Join-Path $StateDirectory 'ecs-verification.json') -Encoding utf8
 $svc=$service.services[0]
 if($svc.runningCount -ne 1 -or $svc.pendingCount -ne 0){throw 'ECS is not at one running task with no pending tasks'}
-$health=Read-Aws @('elbv2','describe-target-health','--target-group-arn',$outputs.target_group_arn.value)
-$health|ConvertTo-Json -Depth 30|Set-Content (Join-Path $StateDirectory 'target-health.json') -Encoding utf8
-if(!$health.TargetHealthDescriptions.Count -or @($health.TargetHealthDescriptions|Where-Object {$_.TargetHealth.State -ne 'healthy'}).Count){throw 'An ALB target is not healthy'}
+$targetDeadline=(Get-Date).AddMinutes(10)
+do {
+ $health=Read-Aws @('elbv2','describe-target-health','--target-group-arn',$outputs.target_group_arn.value)
+ $health|ConvertTo-Json -Depth 30|Set-Content (Join-Path $StateDirectory 'target-health.json') -Encoding utf8
+ $unready=@($health.TargetHealthDescriptions|Where-Object {$_.TargetHealth.State -ne 'healthy'})
+ if($health.TargetHealthDescriptions.Count -gt 0 -and $unready.Count -eq 0){break}
+ if((Get-Date) -ge $targetDeadline){throw 'ALB targets did not settle as healthy before the deadline'}
+ Write-Output 'Waiting for ALB target registration/deregistration to settle'
+ Start-Sleep -Seconds 15
+}while($true)
 $url=$outputs.api_url.value
 $without=Invoke-WebRequest -Uri $url -SkipHttpErrorCheck
 if([int]$without.StatusCode -ne 403){throw 'An API request without a key was not rejected with HTTP 403'}
