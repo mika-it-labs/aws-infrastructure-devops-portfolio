@@ -36,7 +36,10 @@
       "date_header_utc": "2026-10-28T09:31:16+00:00",
       "note": "Initial transition from INSUFFICIENT_DATA; this is not recovery proof."
     },
-    "recovery_ok": "Awaiting confirmation",
+    "recovery_ok": {
+      "date_header_utc": "2026-10-28T09:46:16+00:00",
+      "note": "Later OK notification confirmed separately from initial OK. Missing data is notBreaching; this does not independently prove application health."
+    },
     "ec2_stopped": {
       "date_header_utc": "2026-10-28T09:39:23+00:00",
       "rule": "portfolio-day4-ec2-state",
@@ -55,7 +58,9 @@
   "cleanup": {
     "ec2_stop_requested": true,
     "ec2_stopped_event_received": true,
-    "day4_additions_deleted": false,
-    "cost_finalized": false
+    "day4_additions_deleted": true,
+    "cost_finalized": false,
+    "ec2_console_state": "STOPPED",
+    "details": "cleanup-verification.json"
   }
 }
