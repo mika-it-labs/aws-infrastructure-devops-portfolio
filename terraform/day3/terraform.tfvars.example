@@ -1,0 +1,18 @@
+{
+  "expected_account_id": "REPLACE_ACCOUNT_ID",
+  "vpc_id": "REPLACE_VPC_ID",
+  "public_subnet_ids": [
+    "REPLACE_PUBLIC_A",
+    "REPLACE_PUBLIC_B"
+  ],
+  "private_subnet_ids": [
+    "REPLACE_PRIVATE_A",
+    "REPLACE_PRIVATE_B"
+  ],
+  "web_security_group_id": "REPLACE_WEB_SG",
+  "artifact_bucket_name": "REPLACE_PRIVATE_ARTIFACT_BUCKET",
+  "connection_arn": "arn:aws:codeconnections:ap-northeast-1:REPLACE_ACCOUNT_ID:connection/REPLACE_CONNECTION_ID",
+  "run_id": "day3-example",
+  "deploy_enabled": false,
+  "pipeline_enabled": false
+}
