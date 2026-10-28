@@ -7,7 +7,7 @@ Day 1と、Freeプランで実施可能なDay 2のバックアップ復元・負
 | Day 1 | 完了 | RHEL / Apache / Tomcat / PostgreSQL / EBS / EFS / S3 / CloudWatch | 再起動後の動作・実ログ・停止・スナップショット |
 | Day 2 | 実施済み・Aurora移行は保留 | 内部ALB/NLB、AWS Backup、5xx検知、障害復旧 | 復元DBのSQL、復元EFSの一致、HTTP 200/503/復旧、アラーム往復、追加リソース削除 |
 | Day 3 | 実施済み・CodeDeployとDB接続は保留 | ECR / CodeBuild / ECS Fargate / 内部ALB / API Gatewayを構築 | 修正版ビルド・ECS更新・内部ALB200・API内部テスト200・公開APIのキーなし403/キーあり200。コミット起点のCodePipeline全ステージ成功。CodeDeployは保留 |
-| Day 4 | 未実施 | SNS / Step Functions / EventBridge / 運用演習 | 成功/失敗通知、障害復旧、削除と費用記録 |
+| Day 4 | コンソール検証済み・削除と費用確定は未完了 | SNS / Step Functions / ECSバッチ / EventBridge / 運用演習 | 成功/失敗と自動起動のメール、5xx ALARM、Tomcat復旧、EC2停止通知、ダッシュボードとログ |
 
 ## 目指すストーリー
 
@@ -22,3 +22,5 @@ Day 3は2026-10-27にコンソールで自動ビルド・ECS配備・公開API�
 
 
 2026-10-28にはDay 3のコンソール環境を削除・停止し、Terraformで同じ実施範囲を復元しました。コミットからの自動配備とAPIの403/200を検証後、追加分を削除しEC2停止を確認しました。[Terraform実施記録](day3-terraform-result.md) / [再現手順とコード](../terraform/day3/README.md)。Aurora・CodeDeploy・DB接続・SNS通知はこの検証に含めていません。
+
+Day 4は2026-10-28にコンソールで検証しました。[実施記録](day4-console.md)に実測と残作業を明記しています。CPU・ディスクの閾値超過試験、24時間の日次反復、最終費用確定は未検証です。
