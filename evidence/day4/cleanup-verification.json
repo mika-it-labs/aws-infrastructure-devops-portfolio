@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-28",
+  "checked_at_utc": "2026-10-28T10:06:17Z",
+  "method": "AWS console",
+  "user_authorized": true,
+  "deleted": {
+    "alb": "portfolio-day4-alb",
+    "target_group": "portfolio-day4-web-tg",
+    "alarms": [
+      "portfolio-day4-cpu-high",
+      "portfolio-day4-disk-root-high",
+      "portfolio-day4-alb-target-5xx"
+    ],
+    "dashboard": "portfolio-day4-operations",
+    "event_rules": [
+      "portfolio-day4-schedule",
+      "portfolio-day4-ec2-state"
+    ],
+    "workflow": "portfolio-day4-workflow",
+    "ecs_cluster": "portfolio-day4-cluster",
+    "task_definition": "portfolio-day4-batch:1 (deregistered, then deleted)",
+    "security_group": "portfolio-day4-batch-sg",
+    "log_group": "/portfolio/day4/batch",
+    "sns_topic": "portfolio-day4-alerts",
+    "sns_subscription": "Day4 email subscription (explicitly removed after topic deletion)",
+    "roles": [
+      "portfolio-day4-sfn-role",
+      "portfolio-day4-events-role"
+    ],
+    "managed_policy": "PortfolioDay4SfnPolicy",
+    "inline_policy": "PortfolioDay4StartExecution (removed with role)"
+  },
+  "retained": {
+    "ec2": "Day1 RHEL instance STOPPED; console row verified",
+    "day1_data": "Existing VPC, EBS, EFS, snapshot, S3 and baseline monitoring",
+    "shared_roles": "Existing ecsTaskExecutionRole and other shared roles",
+    "aws_managed_rule": "StepFunctionsGetEventsForECSTaskRule",
+    "other_learning_resources": "Unrelated training resources unchanged"
+  },
+  "cost": {
+    "billing_console_read": true,
+    "final_day4_amount": null,
+    "reason": "Account-wide figures include other labs; cost-allocation tags were not configured. Usage reporting may lag. No exact Day4 total claimed."
+  }
+}
