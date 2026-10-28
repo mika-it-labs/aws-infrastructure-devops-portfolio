@@ -88,3 +88,8 @@ Linux設定は既存の `scripts/bootstrap.sh` をSSM Documentに埋め込みま
 
 内部ALB/NLB、S3アクセスログ、5xxアラーム、AWS Backupを[Day 2のTerraform手順](DAY2.md)に追加しています。復元ジョブはCLIで実行し、復元したEBS・EFSはTerraformへimportして接続・タグ・削除を管理します。[実施結果](../docs/day2-terraform-result.md)を参照してください。Day 2を無効化した計画で、元のDay 1データを保持しながら追加分を整理できます。
 
+
+
+## Day 3の独立した再構築
+
+Day 3はDay 1/2のstateと分離した [terraform/day3](day3/README.md) に実装しています。26リソースを作成し、コミット起点の自動配備・API 403/200・稼働時の差分0を確認後、追加分を削除しました。[実施結果と最終状態](../docs/day3-terraform-result.md)を参照してください。
