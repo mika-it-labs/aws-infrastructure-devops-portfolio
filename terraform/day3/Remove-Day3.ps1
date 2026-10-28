@@ -10,8 +10,9 @@ $tf="$PSScriptRoot/Invoke-Terraform.ps1"
 $raw=& $tf -Profile $Profile -StateDirectory $StateDirectory output -json
 if($LASTEXITCODE -ne 0){throw 'Could not inspect this Day 3 state'}
 $outputs=($raw -join [Environment]::NewLine)|ConvertFrom-Json
-$family=($outputs.task_definition_arn.value -split '/')[-1] -replace ':\d+$',''
-if($family -and $family -ne 'portfolio-day3-task'){throw 'Unexpected task definition family'}
+$taskArn=$outputs.task_definition_arn.value
+if($taskArn -and $taskArn -notmatch ':task-definition/portfolio-day3-task:\d+$'){throw 'Unexpected task definition ARN'}
+$family='portfolio-day3-task'
 $planPath=Join-Path $StateDirectory 'cleanup.tfplan'
 $planArgs=@('plan','-destroy','-no-color')
 foreach($f in $VarFiles){$planArgs+=('-var-file='+[IO.Path]::GetFullPath($f))}
