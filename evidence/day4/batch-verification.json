@@ -1,0 +1,50 @@
+{
+  "checked_date": "2026-10-28",
+  "region": "ap-northeast-1",
+  "method": "AWS console; related SNS emails checked with Gmail connector",
+  "scope": "SNS and Step Functions ECS batch only; remaining Day4 work is pending",
+  "sns_subscription": "CONFIRMED",
+  "connectivity_publish": "SUCCESS",
+  "success": {
+    "name": "day4-success-20261028-1729",
+    "started": "2026-10-28T17:30:05.120+09:00",
+    "ended": "2026-10-28T17:30:59.069+09:00",
+    "duration_seconds": 53.949,
+    "status": "SUCCEEDED",
+    "ecs": "TaskSucceeded",
+    "notification": "NotifySuccess TaskSucceeded"
+  },
+  "failure": {
+    "name": "day4-failure-20261028-1737",
+    "ended": "2026-10-28T17:36:51.442+09:00",
+    "duration_seconds": 49.129,
+    "status": "FAILED",
+    "error": "States.TaskFailed",
+    "exit_code": 42,
+    "stop_code": "EssentialContainerExited",
+    "notification": "NotifyError TaskSucceeded"
+  },
+  "email_receipt": [
+    {
+      "subject": "Portfolio Day4 FAILURE",
+      "date_header_utc": "2026-10-28T08:36:51+00:00",
+      "execution_match": "day4-failure-20261028-1737",
+      "mailbox": "User-designated recipient (redacted)",
+      "source": "Gmail connector search limited to Day4 AWS SNS notifications"
+    },
+    {
+      "subject": "Portfolio Day4 SUCCESS",
+      "date_header_utc": "2026-10-28T08:30:59+00:00",
+      "execution_match": "day4-success-20261028-1729",
+      "mailbox": "User-designated recipient (redacted)",
+      "source": "Gmail connector search limited to Day4 AWS SNS notifications"
+    },
+    {
+      "subject": "Portfolio Day4 SNS connectivity test",
+      "date_header_utc": "2026-10-28T08:17:14+00:00",
+      "execution_match": null,
+      "mailbox": "User-designated recipient (redacted)",
+      "source": "Gmail connector search limited to Day4 AWS SNS notifications"
+    }
+  ]
+}
