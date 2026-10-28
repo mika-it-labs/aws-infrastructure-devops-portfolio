@@ -1,8 +1,10 @@
 # AWS RHEL Web Application Portfolio
 
-**RHEL上のApache・Tomcat・PostgreSQLから、ECSのコンテナ配備・GitHub連携のCI/CD・API Gatewayまで段階的に検証した学習ポートフォリオです。**
+**RHEL上のApache・Tomcat・PostgreSQLから、ECSのコンテナ配備・GitHub連携のCI/CD・API Gateway・非同期バッチ通知と障害復旧まで段階的に検証した学習ポートフォリオです。**
 
-実施日: **2026-10-26〜28** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1〜3の実施分（Aurora移行・CodeDeployは保留）**
+実施日: **2026-10-26〜28** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1〜4の実施分（Aurora移行・CodeDeployは保留）**
+
+> **Day 4コンソール検証:** [実施記録](docs/day4-console.md) / [定義例](day4/README.md)。SNS実受信、Step Functions → ECSの成功/失敗、EventBridge自動起動、Tomcat停止と復旧、EC2停止通知を確認しました。追加リソースの削除と最終費用確認は未完了です。
 
 > **Day 3 Terraform再構築・終了確認:** [実行結果](docs/day3-terraform-result.md) / [コードと再現手順](terraform/day3/README.md)。コンソール構成の整理後、26リソースを再作成し、コミット起点の自動配備・API 403/200を検証して追加分を削除しました。EC2は停止しています。
 
@@ -28,6 +30,8 @@
 | ストレージ | 暗号化EBS・EFS、非公開S3 | マウント・読み書き・S3成果物回収 |
 | 運用 | CloudWatchログ4種類、アラーム5件 | 実イベント・メトリクスの到着確認 |
 | コンテナ / CI/CD | ECR / CodeBuild / CodePipeline / ECS Fargate / 内部ALB | コミットから全ステージ成功・新しいリリースのHTTP 200 |
+| 非同期・通知 | Step Functions / ECSバッチ / EventBridge / SNS | 成功・終了コード42の失敗・定期起動・メール受信 |
+| 障害演習 | Tomcat停止 / ALB 5xx / CloudWatch / SNS | HTTP 200→503×36→200、DB接続復旧、ALARMメール |
 | API | REST API / VPC Link V2 / 使用量プラン・キー | 内部テスト200、公開HTTPSのキーなし403・キーあり200 |
 | IaC | Terraformへの取り込み・起動/停止・SSM構成適用 | 実行計画・apply・動作確認 |
 | コスト管理 | 月次予算、EC2停止 | 停止状態・スナップショット完了確認 |
@@ -69,7 +73,7 @@ Day 1: Apache -> Tomcat -> PostgreSQL OK
 
 本成果物は学習環境の構築・検証記録です。実務の本番導入実績、可用性保証、負荷試験、復旧目標の達成を示すものではありません。AI支援で構築・記録を行い、AWS APIとサーバーの実行結果をもとに検証しています。
 
-Day 2ではバックアップからのDB・EFS復元、内部ALB/NLB、5xx検知と障害復旧、追加リソースの削除まで実施しました。Aurora移行はFreeプラン維持の方針で保留しています。Day 3ではECR、CodeBuild、ECS Fargate、内部ALB、API Gatewayに加え、GitHubの変更による自動ビルド・ECS配備まで検証しました。公開APIは実呼び出しで403/200を確認しました。CodeDeploy、コンテナのDB接続、Day 4の非同期連携は保留・未実施です。[Day 3の実施範囲・現在の稼働状態](docs/day3-console.md)を明記しています。2026-10-28にコンソール環境を整理し、Terraformで復元・検証後、Day 3追加分を再び削除しました。EC2は停止し、Day 1の保存領域・証跡と既存GitHub接続を保持しています。[Terraformの実測と終了状態](docs/day3-terraform-result.md)を記録しています。[実施範囲](docs/day2-console.md)と[ロードマップ](docs/roadmap.md)に分けています。
+Day 2ではバックアップからのDB・EFS復元、内部ALB/NLB、5xx検知と障害復旧、追加リソースの削除まで実施しました。Aurora移行はFreeプラン維持の方針で保留しています。Day 3ではECR、CodeBuild、ECS Fargate、内部ALB、API Gatewayに加え、GitHubの変更による自動ビルド・ECS配備まで検証しました。公開APIは実呼び出しで403/200を確認しました。CodeDeployとコンテナのDB接続は保留です。Day 4では非同期バッチの成功/失敗通知、自動起動、監視・障害復旧・EC2停止通知を検証しました。現在の終了状態は[Day 4記録](docs/day4-console.md)を参照してください。[Day 3の実施範囲・現在の稼働状態](docs/day3-console.md)を明記しています。2026-10-28にコンソール環境を整理し、Terraformで復元・検証後、Day 3追加分を再び削除しました。EC2は停止し、Day 1の保存領域・証跡と既存GitHub接続を保持しています。[Terraformの実測と終了状態](docs/day3-terraform-result.md)を記録しています。[実施範囲](docs/day2-console.md)と[ロードマップ](docs/roadmap.md)に分けています。
 
 公開版ではアカウントID・実リソースID・IP・ARNなどを置換しています。秘密情報、認証情報、未加工の状態ファイルは含めていません。原本は公開用フォルダーとは別に保管しています。
 
