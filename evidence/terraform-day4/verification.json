@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-29",
+  "region": "ap-northeast-1",
+  "terraform_managed_resources": 24,
+  "fmt": "PASS",
+  "validate": "PASS",
+  "running_plan": "No changes (exit 0)",
+  "success": {
+    "stop": "2026-10-29T11:29:20.251+09:00",
+    "sns_publish_tasks": 1,
+    "start": "2026-10-29T11:28:28.954+09:00",
+    "name": "day4-tf-success-20261029112826",
+    "expected_exit_code": 0,
+    "status": "SUCCEEDED"
+  },
+  "intentional_failure": {
+    "stop": "2026-10-29T11:30:15.768+09:00",
+    "sns_publish_tasks": 1,
+    "start": "2026-10-29T11:29:27.953+09:00",
+    "name": "day4-tf-failure-20261029112925",
+    "expected_exit_code": 42,
+    "status": "FAILED"
+  },
+  "schedule": {
+    "name": "b85c3850-642f-4aed-8a18-01523a844cf0_e1d0b2b0-e404-f093-e8af-e3300ecc10b6",
+    "status": "SUCCEEDED",
+    "ended": "2026-10-29T11:30:15.476+09:00",
+    "input_trigger": "EventBridge",
+    "started": "2026-10-29T11:29:25.961+09:00",
+    "final_expression": "rate(1 day)",
+    "final_state": "DISABLED before destroy",
+    "tested": "rate(1 minute)"
+  },
+  "fault": {
+    "status": "Success",
+    "recovery_pass": true,
+    "end": "2026-10-29T02:34:45.126Z",
+    "start": "2026-10-29T02:28:35.126Z",
+    "http_503_count": 36,
+    "recovered_http_200": true
+  },
+  "logs_insights": {
+    "rows": 6,
+    "status": "Complete"
+  },
+  "retained": {
+    "instance_state": "stopped",
+    "db_ebs_state": "in-use",
+    "snapshot_state": "completed",
+    "efs_state": "available"
+  },
+  "post_destroy": {
+    "destroy_plan": "No objects need to be destroyed (exit 0)",
+    "managed_state_count": 0
+  },
+  "final_inventory": {
+    "checked_at_utc": "2026-10-29T03:05:52.618Z",
+    "day4_counts": {
+      "load_balancers": 0,
+      "target_groups": 0,
+      "ecs_clusters": 0,
+      "task_definitions_active": 0,
+      "task_definitions_inactive": 0,
+      "workflows": 0,
+      "event_rules": 0,
+      "sns_topics": 0,
+      "sns_subscriptions": 0,
+      "alarms": 0,
+      "dashboards": 0,
+      "log_groups": 0,
+      "security_groups": 0,
+      "iam_roles": 0,
+      "managed_policies": 0
+    },
+    "all_day4_counts_zero": true,
+    "retained": {
+      "vpc_available": true,
+      "instance_state": "stopped",
+      "attached_ebs_count": 2
+    },
+    "cost_finalized": false
+  },
+  "mail_receipts": [
+    {
+      "subject": "Portfolio Day4 SUCCESS",
+      "date_header_utc": "2026-10-29T02:29:20Z",
+      "execution_match": "day4-tf-success-20261029112826"
+    },
+    {
+      "subject": "Portfolio Day4 FAILURE",
+      "date_header_utc": "2026-10-29T02:30:15Z",
+      "execution_match": "day4-tf-failure-20261029112925"
+    },
+    {
+      "subject": "Portfolio Day4 SUCCESS",
+      "date_header_utc": "2026-10-29T02:30:15Z",
+      "execution_match": "b85c3850-642f-4aed-8a18-01523a844cf0_e1d0b2b0-e404-f093-e8af-e3300ecc10b6"
+    },
+    {
+      "subject": "ALARM: \"portfolio-day4-alb-target-5xx\" in Asia Pacific (Tokyo)",
+      "date_header_utc": "2026-10-29T02:31:05Z"
+    },
+    {
+      "subject": "OK: \"portfolio-day4-alb-target-5xx\" in Asia Pacific (Tokyo)",
+      "date_header_utc": "2026-10-29T02:43:05Z"
+    },
+    {
+      "subject": "AWS Notification Message",
+      "date_header_utc": "2026-10-29T03:03:18Z",
+      "rule_match": "portfolio-day4-ec2-state"
+    }
+  ],
+  "mailbox": "User-designated recipient (redacted); targeted Gmail connector search"
+}
