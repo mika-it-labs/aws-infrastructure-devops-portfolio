@@ -29,6 +29,7 @@
 - [要件定義書](docs/design-documents/requirements.md)：目的・範囲・機能／非機能要件・受入条件
 - [基本設計書](docs/design-documents/basic-design.md)：段階別構成・設計理由・通信・運用方式
 - [詳細設計書](docs/design-documents/detailed-design.md)：ネットワーク・OS・DB・IAM・CI/CD・通知の設定
+- [運用設計書](docs/design-documents/operations-design.md)：役割・点検・監視通知・復元・変更・障害対応・撤去
 - [試験仕様書兼結果書](docs/design-documents/test-specification-results.md)：30項目の確認内容・結果・根拠と未実施試験
 
 実施記録を基にした設計演習・レビュー用の文書です。顧客承認済みの業務設計書や、構築前の要件合意を示すものではありません。実装済み・未実施・改善案を区別しています。
@@ -71,7 +72,7 @@ Day 1: Apache -> Tomcat -> PostgreSQL OK
 
 | 資料 | 内容 |
 |---|---|
-| [Day 1〜4 設計・試験ドキュメント](docs/design-documents/README.md) | 要件定義・基本設計・詳細設計・試験結果と対応表 |
+| [Day 1〜4 設計・試験ドキュメント](docs/design-documents/README.md) | 要件定義・基本設計・詳細設計・運用設計・試験結果と対応表 |
 | [サマリー](docs/summary.md) | 目的・実施範囲・成果・説明の要点 |
 | [設計判断](docs/design.md) | 通信経路、配置、権限、制約と改善余地 |
 | [構築手順](docs/procedure.md) | 実行順序、前提、チェックポイント |
