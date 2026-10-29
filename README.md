@@ -2,7 +2,9 @@
 
 **RHEL上のApache・Tomcat・PostgreSQLから、ECSのコンテナ配備・GitHub連携のCI/CD・API Gateway・非同期バッチ通知と障害復旧まで段階的に検証した学習ポートフォリオです。**
 
-実施日: **2026-10-26〜28** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1〜4の実施分（Aurora移行・CodeDeployは保留）**
+実施日: **2026-10-26〜29** ｜ リージョン: **東京 / ap-northeast-1** ｜ 公開範囲: **Day 1〜4の実施分（Aurora移行・CodeDeployは保留）**
+
+> **Day 4 Terraform再現・終了確認:** [コードと手順](terraform/day4/README.md) / [実施結果](docs/day4-terraform-result.md)。24リソースを再構築し、成功・失敗・定期起動の通知、Tomcat障害復旧、EC2停止通知を再検証しました。検証後は追加分を削除し、EC2停止と元データ保持を確認しました。
 
 > **Day 4コンソール検証:** [実施記録](docs/day4-console.md) / [定義例](day4/README.md)。SNS実受信、Step Functions → ECSの成功/失敗、EventBridge自動起動、Tomcat停止と復旧、EC2停止通知を確認しました。Day 4追加分は削除し、EC2停止を確認しました。[終了証跡](evidence/day4/cleanup-verification.json)を収録しています。Day 4単独の確定額は未算出です。
 
@@ -33,7 +35,7 @@
 | 非同期・通知 | Step Functions / ECSバッチ / EventBridge / SNS | 成功・終了コード42の失敗・定期起動・メール受信 |
 | 障害演習 | Tomcat停止 / ALB 5xx / CloudWatch / SNS | HTTP 200→503×36→200、DB接続復旧、ALARMメール |
 | API | REST API / VPC Link V2 / 使用量プラン・キー | 内部テスト200、公開HTTPSのキーなし403・キーあり200 |
-| IaC | Terraformへの取り込み・起動/停止・SSM構成適用 | 実行計画・apply・動作確認 |
+| IaC | Day 1取り込み、Day 2〜4の再構築・検証・終了 | 実行計画・apply・実測・差分0・AWS残存照合 |
 | コスト管理 | 月次予算、EC2停止 | 停止状態・スナップショット完了確認 |
 
 **動作確認結果**
