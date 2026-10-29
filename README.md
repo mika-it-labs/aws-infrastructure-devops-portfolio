@@ -1,4 +1,4 @@
-# AWS RHEL Web Application Portfolio
+# AWS Infrastructure & DevOps Portfolio
 
 **RHEL上のApache・Tomcat・PostgreSQLから、ECSのコンテナ配備・GitHub連携のCI/CD・API Gateway・非同期バッチ通知と障害復旧まで段階的に検証した学習ポートフォリオです。**
 
