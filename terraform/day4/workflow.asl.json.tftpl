@@ -1,0 +1,108 @@
+{
+  "Comment": "Day4 console hands-on: wait for an ECS batch, notify success or failure",
+  "QueryLanguage": "JSONPath",
+  "StartAt": "RunBatch",
+  "TimeoutSeconds": 1200,
+  "States": {
+    "RunBatch": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::ecs:runTask.sync",
+      "Parameters": {
+        "LaunchType": "FARGATE",
+        "Cluster": "${cluster_arn}",
+        "TaskDefinition": "${task_arn}",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "Subnets": ${subnet_ids},
+            "SecurityGroups": [
+              "${sg_id}"
+            ],
+            "AssignPublicIp": "ENABLED"
+          }
+        },
+        "Overrides": {
+          "ContainerOverrides": [
+            {
+              "Name": "batch",
+              "Environment": [
+                {
+                  "Name": "DEMO_FAIL",
+                  "Value.$": "$.forceFailure"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "TimeoutSeconds": 900,
+      "ResultPath": "$.ecs",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "NotifyError"
+        }
+      ],
+      "Next": "CheckExitCode"
+    },
+    "CheckExitCode": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "And": [
+            {
+              "Variable": "$.ecs.Containers[0].ExitCode",
+              "IsPresent": true
+            },
+            {
+              "Variable": "$.ecs.Containers[0].ExitCode",
+              "NumericEquals": 0
+            }
+          ],
+          "Next": "NotifySuccess"
+        }
+      ],
+      "Default": "NotifyNonzero"
+    },
+    "NotifySuccess": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "ResultPath": "$.notification",
+      "Parameters": {
+        "TopicArn": "${topic_arn}",
+        "Subject": "Portfolio Day4 SUCCESS",
+        "Message.$": "States.Format('Day4 batch SUCCESS. execution={}', $$.Execution.Name)"
+      },
+      "End": true
+    },
+    "NotifyNonzero": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "ResultPath": "$.notification",
+      "Parameters": {
+        "TopicArn": "${topic_arn}",
+        "Subject": "Portfolio Day4 FAILURE",
+        "Message.$": "States.Format('Day4 batch FAILED: non-zero or missing exit code. execution={}', $$.Execution.Name)"
+      },
+      "Next": "BatchFailed"
+    },
+    "NotifyError": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "ResultPath": "$.notification",
+      "Parameters": {
+        "TopicArn": "${topic_arn}",
+        "Subject": "Portfolio Day4 FAILURE",
+        "Message.$": "States.Format('Day4 batch FAILED: inspect execution history. execution={}', $$.Execution.Name)"
+      },
+      "Next": "BatchFailed"
+    },
+    "BatchFailed": {
+      "Type": "Fail",
+      "Error": "BatchFailed",
+      "Cause": "Inspect ECS task logs and Step Functions execution history"
+    }
+  }
+}
