@@ -20,7 +20,21 @@
 
 > 最初に読む資料: [Day 1〜4の設計・試験ドキュメント](docs/design-documents/README.md) ／ [Day 1中心のサマリー](docs/summary.md)
 
-![Day 1構成図](assets/architecture.svg)
+## Day 1〜4の構成図
+
+各画像をクリックすると拡大できます。[構成図の解説と実施範囲](docs/architecture-overview.md)も参照してください。
+
+| Day 1｜Webアプリの構成 | Day 2｜LBと復元の構成 |
+|---|---|
+| ![Day 1の構成図](assets/architecture/day1-webapp.png) | ![Day 2の構成図](assets/architecture/day2-backup-load-balancers.png) |
+
+| Day 3｜自動配備と利用経路 | Day 4｜バッチ・監視・通知の構成 |
+|---|---|
+| ![Day 3の構成図](assets/architecture/day3-cicd-api.png) | ![Day 4の構成図](assets/architecture/day4-batch-monitoring-notifications.png) |
+
+各段階の検証構成を示す模式図です。全構成の同時稼働を示すものではありません。Day 3のコンテナDB接続・Aurora移行・CodeDeploy実配備は未実施です。Day 4の通知発行はStep Functions等が制御します。
+
+[Day 1の詳細構成図（SVG）](assets/architecture.svg)
 
 ## Day 1〜4の設計・試験ドキュメント
 
@@ -72,6 +86,7 @@ Day 1: Apache -> Tomcat -> PostgreSQL OK
 
 | 資料 | 内容 |
 |---|---|
+| [Day 1〜4 構成図と解説](docs/architecture-overview.md) | 段階別の図、処理の流れ、実施範囲と制約 |
 | [Day 1〜4 設計・試験ドキュメント](docs/design-documents/README.md) | 要件定義・基本設計・詳細設計・運用設計・試験結果と対応表 |
 | [サマリー](docs/summary.md) | 目的・実施範囲・成果・説明の要点 |
 | [設計判断](docs/design.md) | 通信経路、配置、権限、制約と改善余地 |
