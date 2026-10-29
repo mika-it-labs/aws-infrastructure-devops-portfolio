@@ -21,7 +21,7 @@ variable "connection_arn" {
   type        = string
   description = "Existing AVAILABLE CodeConnections connection, authorized for this repository only. OAuth installation is retained outside this state."
 }
-variable "repository_full_name" { default = "mika-it-labs/aws-rhel-webapp-portfolio" }
+variable "repository_full_name" { default = "mika-it-labs/aws-infrastructure-devops-portfolio" }
 variable "branch" { default = "main" }
 variable "name_prefix" {
   default = "portfolio-day3"
