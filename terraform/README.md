@@ -93,3 +93,7 @@ Linux設定は既存の `scripts/bootstrap.sh` をSSM Documentに埋め込みま
 ## Day 3の独立した再構築
 
 Day 3はDay 1/2のstateと分離した [terraform/day3](day3/README.md) に実装しています。26リソースを作成し、コミット起点の自動配備・API 403/200・稼働時の差分0を確認後、追加分を削除しました。[実施結果と最終状態](../docs/day3-terraform-result.md)を参照してください。
+
+## Day 4：非同期連携・監視の再現
+
+[Day 4専用ルートと手順](day4/README.md) / [再構築・実測・終了結果](../docs/day4-terraform-result.md)。2026-10-29に24リソースを再作成し、バッチ成功/失敗・定期起動・メール受信・障害復旧を検証しました。追加分を削除し、専用stateの管理対象0件、元EC2停止を確認しています。このルートと同じstateへ混在させません。
