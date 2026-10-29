@@ -1,0 +1,8 @@
+expected_account_id = "123456789012"
+vpc_id = "vpc-EXAMPLE"
+public_subnet_ids = ["subnet-PUBLIC_A", "subnet-PUBLIC_B"]
+web_security_group_id = "sg-EXAMPLE"
+instance_id = "i-EXAMPLE"
+notification_email = "your-address@example.com"
+schedule_expression = "rate(1 day)"
+schedule_enabled = false
